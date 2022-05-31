@@ -102,7 +102,7 @@ class Blockchain:
       neighbours = list(self.nodes)
       for node in neighbours:
         if node != urlparse(self.base_url).netloc:
-          requests.get(f"http://{node}/nodes/resolve?reset_transactions=1")
+          requests.get(f"http://{node}/chain/resolve?reset_transactions=1")
 
       return block
 
@@ -130,7 +130,7 @@ class Blockchain:
       neighbours = list(self.nodes)
       for node in neighbours:
         if node != urlparse(self.base_url).netloc:
-          requests.post(f"http://{node}/update_transaction_list", json = {"transactions": self.current_transactions})
+          requests.post(f"http://{node}/transactions/update", json = {"transactions": self.current_transactions})
       
       return self.last_block['index'] + 1
 
@@ -158,7 +158,8 @@ class Blockchain:
           'doer': reviewer,
           'status': "accepted",
           'task': "Task list review",
-          'duration': reviewed_transactions*REWARD, 
+          'duration': reviewed_transactions*REWARD,
+          'reviewer': reviewer,
           'timestamp': time()
         })
         
@@ -178,7 +179,7 @@ class Blockchain:
       neighbours = list(self.nodes)
       for node in neighbours:
         if node != urlparse(self.base_url).netloc:
-          requests.post(f"http://{node}/update_transaction_list", json = {"transactions": self.current_transactions})
+          requests.post(f"http://{node}/transactions/update", json = {"transactions": self.current_transactions})
              
       return self.last_block['index'] + 1
     
@@ -235,7 +236,7 @@ class Blockchain:
       while self.valid_proof(last_proof, proof, last_hash) is False:
         proof += 1
         
-        return proof
+      return proof
       
     @staticmethod
     def valid_proof(last_proof, proof, last_hash):
@@ -299,16 +300,17 @@ class Blockchain:
 
       # Grab and verify the chains from all the nodes in our network
       for node in neighbours:
-        response = requests.get(f'http://{node}/chain')
+        if node != urlparse(self.base_url).netloc:
+          response = requests.get(f'http://{node}/chain')
 
-        if response.status_code == 200:
-          length = response.json()['length']
-          chain = response.json()['chain']
+          if response.status_code == 200:
+            length = response.json()['length']
+            chain = response.json()['chain']
 
-          # Check if the length is longer and the chain is valid
-          if length > max_length and self.valid_chain(chain):
-            max_length = length
-            new_chain = chain
+            # Check if the length is longer and the chain is valid
+            if length > max_length and self.valid_chain(chain):
+              max_length = length
+              new_chain = chain
 
       # Replace our chain if we discovered a new, valid chain longer than ours
       if new_chain:
@@ -339,7 +341,11 @@ def new_transaction():
   # Create a new Transaction
   index = blockchain.new_transaction(values['doer'], values['task'], values['duration'])
   
-  response = {'message': f'Transaction will be added to Block {index}'}
+  response = {
+    'transactions': blockchain.current_transactions,
+    'length': len(blockchain.current_transactions),
+    'message': f'Transaction will be added to Block {index}'
+  }
   return jsonify(response), 201
 
 @app.route('/transactions', methods=['GET'])
