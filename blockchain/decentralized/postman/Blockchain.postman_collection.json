@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "e51af1b9-f8f4-407f-ad4a-27131a43813f",
+		"name": "Blockchain",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/transactions",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "chain",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/chain",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"chain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "nodes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/nodes",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"nodes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "chain/resolve",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/chain/resolve?reset_transactions=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"chain",
+						"resolve"
+					],
+					"query": [
+						{
+							"key": "reset_transactions",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transactions/new",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"doer\": \"Karen\",\r\n    \"task\": \"Laundry\",\r\n    \"duration\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/transactions/new",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"transactions",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transactions/status/update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ix_list\": [1],\r\n    \"status\": \"accepted\",\r\n    \"reviewer\": \"Joe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/transactions/status/update",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"transactions",
+						"status",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "nodes/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nodes\": [\"http://127.0.0.1:5001\",  \"http://127.0.0.1:5000\", \"http://127.0.0.1:5002\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/nodes/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"nodes",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transactions/update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transactions\": [\r\n        {\r\n            \"doer\": \"Karoliina\",\r\n            \"duration\": 10,\r\n            \"index\": 1,\r\n            \"reviewer\": \"\",\r\n            \"status\": \"pending\",\r\n            \"task\": \"Laundry\",\r\n            \"timestamp\": 1653940776.9252284\r\n        },\r\n        {\r\n            \"doer\": \"Karoliina\",\r\n            \"duration\": 10,\r\n            \"index\": 2,\r\n            \"reviewer\": \"\",\r\n            \"status\": \"pending\",\r\n            \"task\": \"Laundry\",\r\n            \"timestamp\": 1653940778.2675507\r\n        },\r\n        {\r\n            \"doer\": \"Karoliina\",\r\n            \"duration\": 2,\r\n            \"index\": 3,\r\n            \"reviewer\": \"\",\r\n            \"status\": \"pending\",\r\n            \"task\": \"Laundry\",\r\n            \"timestamp\": 1653940884.561483\r\n        }\r\n    ]\r\n    \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/transactions/update",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"transactions",
+						"update"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
