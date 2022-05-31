@@ -56,7 +56,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"sender\": \"Karen\",\r\n    \"recipient\": \"Cooking\",\r\n    \"amount\": 10\r\n}",
+					"raw": "{\r\n    \"doer\": \"Karen\",\r\n    \"task\": \"Laundry\",\r\n    \"duration\": 10\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
