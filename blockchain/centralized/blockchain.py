@@ -7,7 +7,7 @@ from uuid import uuid4
 import requests
 from flask import Flask, jsonify, request
 
-IP = "127.0.0.1"
+HOST = "127.0.0.1"
 PORT = "5000"
 REWARD = 0.25
 
@@ -15,6 +15,9 @@ class Blockchain:
     def __init__(self):
       self.chain = []
       self.current_transactions = []
+      
+      # Create the genesis block
+      self.new_block(previous_hash='1', proof=100)
       
     def new_block(self, proof, previous_hash):
       """
@@ -50,14 +53,14 @@ class Blockchain:
       :return: The index of the Block that will hold this transaction
       """
       
-        self.current_transactions.append({
-        'index': len(self.current_transactions) + 1,
-        'doer': doer,
-        'task': task,
-        'duration': duration,
-        'status': 'pending',
-        'reviewer': '',
-        'timestamp': time()
+      self.current_transactions.append({
+            'index': len(self.current_transactions) + 1,
+            'doer': doer,
+            'task': task,
+            'duration': duration,
+            'status': 'pending',
+            'reviewer': '',
+            'timestamp': time()
       })
       
       return self.last_block['index'] + 1
@@ -186,8 +189,6 @@ def transactions():
     'length': len(blockchain.current_transactions),
   }
   return jsonify(response), 200
-  
-    return "We'll add a new transaction"
 
 @app.route('/transactions/status/update', methods=['POST'])
 def change_transaction_status():
