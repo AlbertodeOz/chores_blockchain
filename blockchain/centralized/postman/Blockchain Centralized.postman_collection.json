@@ -56,7 +56,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"sender\": \"Alberto\",\r\n    \"recipient\": \"Cooking\",\r\n    \"amount\": 10\r\n}",
+					"raw": "{\r\n    \"sender\": \"Karen\",\r\n    \"recipient\": \"Cooking\",\r\n    \"amount\": 10\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,7 +88,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"ix_list\": [1,2,3,4,5,6],\r\n    \"status\": \"accepted\",\r\n    \"reviewer\": \"Alberto\"\r\n}",
+					"raw": "{\r\n    \"ix_list\": [1,2,3,4,5,6],\r\n    \"status\": \"accepted\",\r\n    \"reviewer\": \"Joe\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
