@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/mine",
+					"raw": "http://127.0.0.1:5000/transactions",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -21,7 +21,7 @@
 					],
 					"port": "5000",
 					"path": [
-						"mine"
+						"transactions"
 					]
 				}
 			},
@@ -33,7 +33,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/mine",
+					"raw": "http://127.0.0.1:5000/chain",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -43,7 +43,7 @@
 					],
 					"port": "5000",
 					"path": [
-						"mine"
+						"chain"
 					]
 				}
 			},
